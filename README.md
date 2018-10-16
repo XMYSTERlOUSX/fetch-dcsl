@@ -2,7 +2,7 @@
 
 ## Install
 
-`$ go get github.com/bertrandmt-nflx/fetch-dcsl`
+`$ go get -v -u github.com/bertrandmt-nflx/fetch-dcsl`
 
 ## Run
 
