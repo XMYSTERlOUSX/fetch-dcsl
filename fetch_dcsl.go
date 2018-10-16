@@ -67,15 +67,15 @@ func read_dcsl_data(r io.Reader) []byte {
 
 func main() {
 	var pFetch = flag.Bool("f", false, "fetch fresh DCSL")
-	var pSystemId = flag.Int("s", 0, "specific system ID to report")
-	var pListManufacturers = flag.Bool("m", false, "list all manufacturers")
+	var pSystemId = flag.Int("s", 0, "report on specific system ID")
+	var pListManufacturers = flag.Bool("m", false, "list all manufacturers as CSV")
 	flag.Parse()
 
 	var data []byte
-	if *pFetch {
-		data = fetch_dcsl_data()
-	} else if r, err := os.Open(todays_dcsl_file_name()); err == nil {
+	if r, err := os.Open(todays_dcsl_file_name()); err == nil {
 		data = read_dcsl_data(r)
+	} else if *pFetch {
+		data = fetch_dcsl_data()
 	} else {
 		data = read_dcsl_data(os.Stdin)
 	}
