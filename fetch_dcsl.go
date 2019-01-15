@@ -49,7 +49,6 @@ func fetch_dcsl_data() []byte {
 		panic(errors.New("no \"signedList\" element in JSON response"))
 	}
 
-        fmt.Println(signedList)
 	decoded, err := base64.URLEncoding.DecodeString(signedList)
 	check(err)
 
