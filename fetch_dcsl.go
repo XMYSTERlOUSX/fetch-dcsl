@@ -29,6 +29,11 @@ func todays_dcsl_file_name() string {
 	return fmt.Sprintf("%04d%02d%02d-dcsl.bin", time.Now().Year(), time.Now().Month(), time.Now().Day())
 }
 
+type DcslResponse struct {
+	ListResponseHeader map[string]interface{} `json:"listResponseHeader"`
+	SignedList string `json:"signedList"`
+}
+
 // fetch a fresh DCSL from its server
 func fetch_dcsl_data() []byte {
 	const TheUrl = "https://www.googleapis.com/certificateprovisioning/v1/devicecertificatestatus/list?key=AIzaSyDMLcE1tgmHw8Eg5rUvrdPFgXT6VQl-rHQ"
@@ -40,12 +45,12 @@ func fetch_dcsl_data() []byte {
 	data, err := ioutil.ReadAll(resp.Body)
 	check(err)
 
-	var dcsl_response_body map[string]string
+	var dcsl_response_body  DcslResponse
 	err = json.Unmarshal(data, &dcsl_response_body)
 	check(err)
 
-	signedList, prs := dcsl_response_body["signedList"]
-	if !prs {
+	signedList := dcsl_response_body.SignedList
+	if len(signedList) == 0 {
 		panic(errors.New("no \"signedList\" element in JSON response"))
 	}
 
