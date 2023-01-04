@@ -1,4 +1,4 @@
-module github.com/bertrandmt-nflx/fetch-dcsl
+module github.com/XMYSTERlOUSX/fetch-dcsl
 
 require (
 	github.com/golang/protobuf v1.2.0

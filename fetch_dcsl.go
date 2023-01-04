@@ -13,7 +13,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/bertrandmt-nflx/fetch-dcsl/widevine"
+	"github.com/XMYSTERlOUSX/fetch-dcsl/widevine"
 
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
